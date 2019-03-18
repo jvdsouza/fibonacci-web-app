@@ -7,7 +7,8 @@ class App extends Component {
     super()
     this.state = {
       input: '',
-      fibVal: ''
+      fibVal: '',
+      error: ''
     }
   }
 
@@ -21,9 +22,12 @@ class App extends Component {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        input: this.state.input
+        numInput: this.state.input
       })
     })
+    .then(response => response.json())
+    .then(data => this.setState({fibVal: data}))
+    .catch(err => console.log("there was an error :(", err))
   }
 
   render() {
@@ -35,9 +39,10 @@ class App extends Component {
         <div>
           The number {this.state.input} represents:
           <div>
-            <h1></h1>
+            <h1>{this.state.fibVal}</h1>
           </div>
         </div>
+        <footer>Made by Jason D'souza with React</footer> 
       </div>
     );
   }
