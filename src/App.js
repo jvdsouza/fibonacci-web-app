@@ -18,7 +18,7 @@ class App extends Component {
   }
 
   onSubmit = () => {
-    fetch('http://localhost:3001/fibonacci', {
+    fetch('https://shrouded-mesa-68348.herokuapp.com/fibonacci', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -34,15 +34,23 @@ class App extends Component {
     return (
       <div className="main Helvetica tc">
         <div className="ma2">Which number of the fibonacci sequence do you want?</div>
-        <input className="ma2" type="text" onChange={this.onInputChange}/>
-        <button className="button" onClick={this.onSubmit}>Search</button>
+        <input 
+          className="ma2" 
+          type="text" aria-label="Input" 
+          onChange={this.onInputChange}
+        />
+        <button 
+          className="button" 
+          onClick={this.onSubmit}>
+          Search
+        </button>
         <div>
           The number {this.state.input} represents:
           <div>
             <h1>{this.state.fibVal}</h1>
           </div>
         </div>
-        <footer>Made by Jason D'souza with React</footer> 
+        <footer>Made by Jason with React</footer> 
       </div>
     );
   }
